@@ -596,19 +596,19 @@ def _map_to_ray_cluster(rc) -> Optional[RayCluster]:
     else:
         status = RayClusterStatus.UNKNOWN
 
-    config_check()
-    api_instance = client.CustomObjectsApi(api_config_handler())
-    routes = api_instance.list_namespaced_custom_object(
-        group="route.openshift.io",
-        version="v1",
-        namespace=rc["metadata"]["namespace"],
-        plural="routes",
-    )
+    # config_check()
+    # api_instance = client.CustomObjectsApi(api_config_handler())
+    # routes = api_instance.list_namespaced_custom_object(
+    #     group="route.openshift.io",
+    #     version="v1",
+    #     namespace=rc["metadata"]["namespace"],
+    #     plural="routes",
+    # )
     ray_route = None
-    for route in routes["items"]:
-        if route["metadata"]["name"] == f"ray-dashboard-{rc['metadata']['name']}":
-            protocol = "https" if route["spec"].get("tls") else "http"
-            ray_route = f"{protocol}://{route['spec']['host']}"
+    # for route in routes["items"]:
+    #     if route["metadata"]["name"] == f"ray-dashboard-{rc['metadata']['name']}":
+    #         protocol = "https" if route["spec"].get("tls") else "http"
+    #         ray_route = f"{protocol}://{route['spec']['host']}"
 
     return RayCluster(
         name=rc["metadata"]["name"],
