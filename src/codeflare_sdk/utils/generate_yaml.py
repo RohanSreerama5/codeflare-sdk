@@ -428,11 +428,11 @@ def generate_appwrapper(
         head_memory,
         head_gpus,
     )
-    # update_dashboard_route(route_item, cluster_name, namespace)
-    # if local_interactive:
-    #     enable_local_interactive(resources, cluster_name, namespace)
-    # else:
-    #     disable_raycluster_tls(resources["resources"])
+    update_dashboard_route(route_item, cluster_name, namespace)
+    if local_interactive:
+        enable_local_interactive(resources, cluster_name, namespace)
+    else:
+        disable_raycluster_tls(resources["resources"])
     outfile = appwrapper_name + ".yaml"
     write_user_appwrapper(user_yaml, outfile)
     return outfile
